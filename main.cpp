@@ -7,51 +7,22 @@ int main()
 {
 
    // specific number prime or not
-   int num;
+   int n;
    cout << "Enter a number: ";
-   cin >> num;
-   bool isPrime = true;
+   cin >> n;
 
-   for (int i = 2; i < sqrt(num); i++)
+   // reverse numbers
+   int rev = 0;
+   int temp = n;
+   while (temp != 0)
    {
-      if (num % i == 0)
-      {
-         cout << "Not Prime" << endl;
-         isPrime = false;
-         break;
-      }
-      
-      
+      int lastDigit = temp % 10;
+      rev = rev * 10 + lastDigit;
+      temp = temp / 10;
    }
-   if (isPrime)
-   {
-      cout << "Prime" << endl;
-   }
+
+   cout << "Reverse of " << n << " is " << rev << endl;
    
-
-   // prime number between 1 and 100
-   int start;
-   int end;
-   cout << "Enter start number: ";
-   cin >> start;
-   cout << "Enter end number: ";
-   cin >> end;
-   for (int i = start; i <= end; i++)
-   {
-      bool isPrime = true;
-      for (int j = 2; j < i; j++)
-      {
-         if (i % j == 0)
-         {
-            isPrime = false;
-            break;
-         }
-      }
-      if (isPrime)
-      {
-         cout << i << endl;
-      }
-   }
 
    return 0;
 }
