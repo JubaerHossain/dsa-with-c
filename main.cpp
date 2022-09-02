@@ -1,40 +1,33 @@
 
 #include <iostream>
 #include <math.h>
+#include <vector>
 using namespace std;
-
-
-int factorial(int r){
-    int fact = 1;
-    for(int i = 2; i <= r; i++){
-        fact = fact * i;
-    }
-    return fact;
-}
-
 
 int main()
 {
-   int n;
-   cout << "Enter a number: ";
-   cin >> n;
+    vector<int> g1;
 
-   // pascal's triangle
+    for (int i = 1; i <= 5; i++)
+        g1.push_back(i);
 
-   for (int i = 0; i < n; i++)
-   {
-    for (int j = 0; j <= i; j++)
-    {
-           int nCr = factorial(i) / (factorial(j) * factorial(i - j));
-           cout << nCr << " ";
-    }
-    cout << endl;
-    
-   }
-   
+        
 
+    cout << "Output of begin and end: ";
+    for (auto i = g1.begin(); i != g1.end(); ++i)
+        cout << *i << " ";
 
+    cout << "\nOutput of cbegin and cend: ";
+    for (auto i = g1.cbegin(); i != g1.cend(); ++i)
+        cout << *i << " ";
 
+    cout << "\nOutput of rbegin and rend: ";
+    for (auto ir = g1.rbegin(); ir != g1.rend(); ++ir)
+        cout << *ir << " ";
 
-   return 0;
+    cout << "\nOutput of crbegin and crend : ";
+    for (auto ir = g1.crbegin(); ir != g1.crend(); ++ir)
+        cout << *ir << " ";
+
+    return 0;
 }
