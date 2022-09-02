@@ -12,11 +12,17 @@ int factorial(int n) {
 
 int main()
 {
-   int n;
+   int n,r;
    cout << "Enter a number: ";
    cin >> n;
+   cout << "Enter a number: ";
+   cin >> r;
 
-   cout << "Factorial of " << n << " is " << factorial(n);
+   // nCr = n! / (r! * (n-r)!)
+
+   int nCr = factorial(n) / (factorial(r) * factorial(n - r));
+   cout << "nCr = " << nCr << endl;
+
 
    return 0;
 }
