@@ -2,26 +2,18 @@
 #include <iostream>
 #include <math.h>
 using namespace std;
+int ncr()
 
-int factorial(int n) {
-    if (n == 0) {
-        return 1;
-    }
-    return n * factorial(n - 1);
-}
 
 int main()
 {
-   int n,r;
+   int n;
    cout << "Enter a number: ";
    cin >> n;
-   cout << "Enter a number: ";
-   cin >> r;
 
-   // nCr = n! / (r! * (n-r)!)
+   // pascal's triangle
 
-   int nCr = factorial(n) / (factorial(r) * factorial(n - r));
-   cout << "nCr = " << nCr << endl;
+
 
 
    return 0;
