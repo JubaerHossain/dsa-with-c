@@ -3,33 +3,20 @@
 #include <math.h>
 using namespace std;
 
+int factorial(int n) {
+    if (n == 0) {
+        return 1;
+    }
+    return n * factorial(n - 1);
+}
+
 int main()
 {
    int n;
    cout << "Enter a number: ";
    cin >> n;
 
-   // armstrong number
-
-   int sum = 0;
-   int originalN = n;
-   while (n > 0)
-   {
-      int lastDigit = n % 10;
-      int s = pow(lastDigit, 3);
-      sum += s;
-      n = n / 10;
-   }
-
-
-   if (sum == originalN)
-   {
-      cout << "Armstrong number";
-   }
-   else
-   {
-      cout << "Not an Armstrong number";
-   }
+   cout << "Factorial of " << n << " is " << factorial(n);
 
    return 0;
 }
