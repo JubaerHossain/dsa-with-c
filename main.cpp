@@ -1,56 +1,34 @@
 
 #include <iostream>
-#include <cmath>
+#include <math.h>
 using namespace std;
 
 int main()
 {
-
-   // specific number prime or not
-   int num;
+   int n;
    cout << "Enter a number: ";
-   cin >> num;
-   bool isPrime = true;
+   cin >> n;
 
-   for (int i = 2; i < sqrt(num); i++)
-   {
-      if (num % i == 0)
-      {
-         cout << "Not Prime" << endl;
-         isPrime = false;
-         break;
-      }
-      
-      
-   }
-   if (isPrime)
-   {
-      cout << "Prime" << endl;
-   }
-   
+   // armstrong number
 
-   // prime number between 1 and 100
-   int start;
-   int end;
-   cout << "Enter start number: ";
-   cin >> start;
-   cout << "Enter end number: ";
-   cin >> end;
-   for (int i = start; i <= end; i++)
+   int sum = 0;
+   int originalN = n;
+   while (n > 0)
    {
-      bool isPrime = true;
-      for (int j = 2; j < i; j++)
-      {
-         if (i % j == 0)
-         {
-            isPrime = false;
-            break;
-         }
-      }
-      if (isPrime)
-      {
-         cout << i << endl;
-      }
+      int lastDigit = n % 10;
+      int s = pow(lastDigit, 3);
+      sum += s;
+      n = n / 10;
+   }
+
+
+   if (sum == originalN)
+   {
+      cout << "Armstrong number";
+   }
+   else
+   {
+      cout << "Not an Armstrong number";
    }
 
    return 0;
