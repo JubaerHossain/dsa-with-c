@@ -1,31 +1,37 @@
-
 #include <iostream>
-#include <math.h>
-#include <vector>
+#include <bits/stdc++.h>
 using namespace std;
 
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution
+{
+public:
+    int findMinTime(int N, vector<int> &A, int L)
+    {
+        int sum;
+        // array sum of all elements in array A that are less than length length L and greater than 0
+       
+    }
+};
+
+//{ Driver Code Starts.
 int main()
 {
-    vector<int> g1;
-    g1.assign(5, 10);
-
-
-
-    cout << "Output of begin and end: ";
-    for (auto i = g1.begin(); i != g1.end(); ++i)
-        cout << *i << " ";
-
-    cout << "\nOutput of cbegin and cend: ";
-    for (auto i = g1.cbegin(); i != g1.cend(); ++i)
-        cout << *i << " ";
-
-    cout << "\nOutput of rbegin and rend: ";
-    for (auto ir = g1.rbegin(); ir != g1.rend(); ++ir)
-        cout << *ir << " ";
-
-    cout << "\nOutput of crbegin and crend : ";
-    for (auto ir = g1.crbegin(); ir != g1.crend(); ++ir)
-        cout << *ir << " ";
-
+    int n;
+    cin >> n;
+    int l;
+    cin >> l;
+    vector<int> arr(l);
+    for (int i = 0; i < l; i++)
+    {
+        cin >> arr[i];
+    }
+    Solution ob;
+    int ans = ob.findMinTime(n, arr, l);
+    cout << ans << endl;
     return 0;
 }
+
+// } Driver Code Ends
