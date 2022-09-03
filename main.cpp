@@ -10,8 +10,13 @@ class Solution
 public:
     int findMinTime(int N, vector<int> &A, int L)
     {
-        int sum;
-        // array sum of all elements in array A that are less than length length L and greater than 0
+
+        // number series of 1 to N
+        vector<int> num(N);
+        for (int i = 0; i < N; i++)
+            num[i] = i + 1;
+            
+
        
     }
 };
