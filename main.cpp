@@ -8,15 +8,20 @@ using namespace std;
 class Solution
 {
 public:
-    int findMinTime(int N, vector<int> &A, int L)
+    int findMinTime(int N, int arr[], int L)
     {
 
-        // number series of 1 to N
-        vector<int> num(N);
+        // Your code goes here
         for (int i = 0; i < N; i++)
-            num[i] = i + 1;
+        {
+            if (arr[i] == L)
+            {
+                return i;
+            }
             
+        }
 
+        return -1;
        
     }
 };
@@ -25,16 +30,18 @@ public:
 int main()
 {
     int n;
+    cout << "Enter the number of elements in the array: ";
     cin >> n;
-    int l;
-    cin >> l;
-    vector<int> arr(l);
-    for (int i = 0; i < l; i++)
+    int arr[n];
+    for (int i = 0; i < n; i++)
     {
         cin >> arr[i];
     }
+    int key;
+    cout << "Enter the key: ";
+    cin >> key;
     Solution ob;
-    int ans = ob.findMinTime(n, arr, l);
+    int ans = ob.findMinTime(n, arr, key);
     cout << ans << endl;
     return 0;
 }
