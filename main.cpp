@@ -20,5 +20,29 @@ int main()
         q.pop();
     }
 
+    vector<int> values = {1, 2, 3, 4, 5};
+
+    cout << endl;
+    queue<int> q1;
+    for (int i = 0; i < values.size(); i++)
+    {
+        q1.push(values[i]);
+    }
+
+    while (!q1.empty())
+    {
+
+        cout << q1.front() << " ";
+        q1.pop();
+    }
+
+    // enqueue
+    
+
+
+    // dequeue
+
+
+
     return 0;
 }
