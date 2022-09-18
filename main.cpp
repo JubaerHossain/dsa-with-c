@@ -20,7 +20,7 @@ int main()
         q.pop();
     }
 
-    vector<int> values = {1, 2, 3, 4, 5};
+    vector<int> values(10, 2);
 
     cout << endl;
     queue<int> q1;
@@ -35,8 +35,11 @@ int main()
         cout << q1.front() << " ";
         q1.pop();
     }
+    cout << endl;
 
     // enqueue
+
+    
     
 
 
