@@ -45,6 +45,7 @@ public:
             cout << "Queue is empty" << endl;
             return -1;
         }
+        cout << "Dequeued element is " << arr[front] << endl;
         int data = arr[front];
         front = (front + 1) % capacity;
         return data;
@@ -117,8 +118,8 @@ class Queue
             cout << "Queue is empty" << endl;
             return -1;
         }
+        cout << "Normal Dequeued element is " << arr[front] << endl;
         return arr[front++];
-
     }
 
     void peak()
@@ -160,8 +161,21 @@ int main()
     q.enqueue(3);
     q.enqueue(4);
     q.enqueue(5);
-
+    q.print();    
+    cout << endl;
+    q.dequeue();
     q.print();
+    cout << endl;
+    cout << "after enqueue in Normal queue" << endl;
+    cout << endl;
+    q.enqueue(60);
+    cout << endl;
+    q.print();
+    cout << endl;
+    cout << endl;
+    cout << endl;
+
+
 
     cout << "Circular Queue are :   " << endl;
     CircularQueue cq(n);
@@ -171,16 +185,22 @@ int main()
     cq.enqueue(40);
     cq.enqueue(50);
     cq.enqueue(60);
+    cout << endl;
     cq.print();
+    cout << endl;
     cout << "peak value is : ";
     cq.peak();
 
-    // cq.dequeue();
-    // cout << "dequeue" << endl;
-    // cq.print();
-    // cq.enqueue(60);
-    // cout << "after enqueue" << endl;
-    // cq.print();
+    cout << endl;
+    cq.dequeue();
+    cout << endl;
+    cout << endl;
+    cq.print();
+    cq.enqueue(60);
+    cout << "after enqueue" << endl;
+    cout << endl;
+    cq.print();
+    cout << endl;
 
     return 0;
 }
