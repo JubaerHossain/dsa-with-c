@@ -1,87 +1,59 @@
 #include <bits/stdc++.h>
-using namespace std;
+using namespace std; 
 
-class Node
-{
+// doubly linked list node
+class Node {
 public:
     int data;
-    Node *next;
-    Node(int data)
-    {
-        this->data = data;
-        this->next = NULL;
-    }
+    Node* next;
+    Node* prev;
 };
 
-Node *insertion(Node *head, int data)
+// function to insert a new node at the
+// beginning of the Doubly Linked List
+
+Node *insert(Node *head, int data)
 {
-    Node *temp = new Node(data);
-    if (head == NULL)
-    {
-        head = temp;
-        return head;
-    }
-    Node *curr = head;
-    while (curr->next != NULL)
-    {
-        curr = curr->next;
-    }
-    curr->next = temp;
-    return head;
+    Node *temp = new Node();
+    temp->data = data;
+    temp->next = head;
+    temp->prev = NULL;
+    if (head != NULL)
+        head->prev = temp;
+    return temp;
 }
 
-Node *pop(Node *head, int data)
+// function to print nodes in a given doubly linked list
+void printList(Node* head)
 {
-    Node *temp = head;
-    if (head == NULL)
-    {
-        return head;
-    }
-
-    if (head->data == data)
-    {
+    while (head != NULL) {
+        cout << head->data << "->";
         head = head->next;
-        return head;
     }
-    while (temp->next != NULL)
-    {
-        if (temp->next->data == data)
-        {
-            Node *temp1 = temp->next;
-            temp->next = temp->next->next;
-            delete temp1;
-            return head;
-        }
-        temp = temp->next;
-    }
-    return head;
+
+    cout << "NULL" << endl;
+
 }
 
-Node *display(Node *node)
-{
-    while (node != NULL)
-    {
-        cout << node->data << "->";
-        node = node->next;
-    }
-    cout << "NULL" << endl;
-    return node;
-}
+
+
+
 
 int main()
 {
-    Node *head = NULL;
-    head = insertion(head, 10);
-    head = insertion(head, 20);
-    head = insertion(head, 30);
-    head = insertion(head, 40);
-    head = insertion(head, 50);
-    head = insertion(head, 60);
 
-    display(head);
-    cout << "After pop 30" << endl;
-    head = pop(head, 30);
-    display(head);
+    // doubly linked list
 
+    Node* head = NULL;
+
+    head = insert(head, 1);
+    head = insert(head, 2);
+    head = insert(head, 3);
+    head = insert(head, 4);
+    head = insert(head, 5);
+
+    cout << "Doubly linked list is: " << endl;
+    printList(head);
+    
     return 0;
 }
