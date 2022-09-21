@@ -1,206 +1,87 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class CircularQueue
+class Node
 {
-    int *arr;
-    int front;
-    int rear;
-    int capacity;
-
 public:
-    CircularQueue(int capacity)
+    int data;
+    Node *next;
+    Node(int data)
     {
-        this->capacity = capacity;
-        arr = new int[capacity];
-        front = -1;
-        rear = -1;
-    }
-
-    bool isEmpty()
-    {
-        return front == rear;
-    }
-
-    bool isFull()
-    {
-        return rear + 1 == capacity;
-    }
-
-    void enqueue(int data)
-    {
-        if (isFull())
-        {
-            cout << "Queue is full" << endl;
-            return;
-        }
-        arr[rear] = data;
-        rear = (rear + 1) % capacity;
-    }
-
-    int dequeue()
-    {
-        if (isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return -1;
-        }
-        cout << "Dequeued element is " << arr[front] << endl;
-        int data = arr[front];
-        front = (front + 1) % capacity;
-        return data;
-    }
-
-    void peak()
-    {
-        if (isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return;
-        }
-        cout << arr[front] << endl;
-    }
-
-    void print()
-    {
-        if (isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return;
-        }
-        cout << "Queue is: ";
-        for (int i = front; i < rear; i++)
-        {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
+        this->data = data;
+        this->next = NULL;
     }
 };
 
-class Queue
+Node *insertion(Node *head, int data)
 {
-    int *arr;
-    int capacity;
-    int front,rear;
-
-    public:
-    Queue(int capacity)
+    Node *temp = new Node(data);
+    if (head == NULL)
     {
-        this->capacity = capacity;
-        arr = new int[capacity];
-        front = -1;
-        rear = -1;
+        head = temp;
+        return head;
+    }
+    Node *curr = head;
+    while (curr->next != NULL)
+    {
+        curr = curr->next;
+    }
+    curr->next = temp;
+    return head;
+}
+
+Node *pop(Node *head, int data)
+{
+    Node *temp = head;
+    if (head == NULL)
+    {
+        return head;
     }
 
-    bool isEmpty()
+    if (head->data == data)
     {
-        return front == rear;
+        head = head->next;
+        return head;
     }
-    bool isFull()
+    while (temp->next != NULL)
     {
-        return rear + 1 == capacity;
-    }
-
-    void enqueue(int data)
-    {
-        if(isFull())
+        if (temp->next->data == data)
         {
-            cout << "Queue is full" << endl;
-            return;
+            Node *temp1 = temp->next;
+            temp->next = temp->next->next;
+            delete temp1;
+            return head;
         }
-        arr[rear++] = data;
+        temp = temp->next;
     }
+    return head;
+}
 
-    int dequeue()
+Node *display(Node *node)
+{
+    while (node != NULL)
     {
-        if(isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return -1;
-        }
-        cout << "Normal Dequeued element is " << arr[front] << endl;
-        return arr[front++];
+        cout << node->data << "->";
+        node = node->next;
     }
+    cout << "NULL" << endl;
+    return node;
+}
 
-    void peak()
-    {
-        if(isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return;
-        }
-        cout << arr[front] << endl;
-    }
-
-    void print()
-    {
-        if(isEmpty())
-        {
-            cout << "Queue is empty" << endl;
-            return;
-        }
-        cout << "Queue is: ";
-        for(int i = front; i < rear; i++)
-        {
-            cout << arr[i] << " ";
-        }
-        cout << endl;
-    }
-};
 int main()
 {
+    Node *head = NULL;
+    head = insertion(head, 10);
+    head = insertion(head, 20);
+    head = insertion(head, 30);
+    head = insertion(head, 40);
+    head = insertion(head, 50);
+    head = insertion(head, 60);
 
-
-
-    int n = 5;
-
-    Queue q(n);
-
-    q.enqueue(1);
-    q.enqueue(2);
-    q.enqueue(3);
-    q.enqueue(4);
-    q.enqueue(5);
-    q.print();    
-    cout << endl;
-    q.dequeue();
-    q.print();
-    cout << endl;
-    cout << "after enqueue in Normal queue" << endl;
-    cout << endl;
-    q.enqueue(60);
-    cout << endl;
-    q.print();
-    cout << endl;
-    cout << endl;
-    cout << endl;
-
-
-
-    cout << "Circular Queue are :   " << endl;
-    CircularQueue cq(n);
-    cq.enqueue(10);
-    cq.enqueue(20);
-    cq.enqueue(30);
-    cq.enqueue(40);
-    cq.enqueue(50);
-    cq.enqueue(60);
-    cout << endl;
-    cq.print();
-    cout << endl;
-    cout << "peak value is : ";
-    cq.peak();
-
-    cout << endl;
-    cq.dequeue();
-    cout << endl;
-    cout << endl;
-    cq.print();
-    cq.enqueue(60);
-    cout << "after enqueue" << endl;
-    cout << endl;
-    cq.print();
-    cout << endl;
+    display(head);
+    cout << "After pop 30" << endl;
+    head = pop(head, 30);
+    display(head);
 
     return 0;
 }
