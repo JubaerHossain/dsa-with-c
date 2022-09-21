@@ -23,6 +23,27 @@ Node *insert(Node *head, int data)
     return temp;
 }
 
+Node *pop(Node *head , int data)
+{
+    Node *temp = head;
+    while(temp->data != data)
+    {
+        temp = temp->next;
+    }
+    if(temp->prev != NULL)
+    {
+        temp->prev->next = temp->next;
+    }
+    else
+    {
+        head = temp->next;
+    }
+    if(temp->next != NULL)
+    {
+        temp->next->prev = temp->prev;
+    }
+    return head;
+}
 // function to print nodes in a given doubly linked list
 void printList(Node* head)
 {
@@ -53,6 +74,11 @@ int main()
     head = insert(head, 5);
 
     cout << "Doubly linked list is: " << endl;
+    printList(head);
+
+    head = pop(head, 3);
+    cout << "Doubly linked list after pop is: " << endl;
+
     printList(head);
     
     return 0;
