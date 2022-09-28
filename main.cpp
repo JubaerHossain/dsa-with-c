@@ -1,68 +1,51 @@
 #include <bits/stdc++.h>
 using namespace std; 
 
-class QuadraticHash{
-    int *arr;
-    int size;
-    int capacity;
+class LinearHash{
+    private:
+    list<int> *table;
+
     public:
-    QuadraticHash(int cap){
-        capacity = cap;
-        size = 0;
-        arr = new int[cap];
-        for(int i=0;i<cap;i++){
-            arr[i] = -1;
-        }
+    LinearHash(int size){
+        table = new list<int>[size];
     }
-    int hash(int key){
-        return key%capacity;
-    }
-    int hash2(int key){
-        return 7-(key%7);
-    }
+
     void insert(int key){
-        if(size==capacity){
-            cout<<"Hash Table is full"<<endl;
-            return;
-        }
-        int i = hash(key);
-        int j = hash2(key);
-        int k = 0;
-        while(arr[(i+k*j)%capacity]!=-1){
-            k++;
-        }
-        arr[(i+k*j)%capacity] = key;
-        size++;
+        int index = key % 10;
+        table[index].push_back(key);
     }
+
     void remove(int key){
-        int i = hash(key);
-        int j = hash2(key);
-        int k = 0;
-        while(arr[(i+k*j)%capacity]!=key){
-            k++;
-        }
-        arr[(i+k*j)%capacity] = -1;
-        size--;
+        int index = key % 10;
+        table[index].remove(key);
     }
+
+    bool search(int key){
+        int index = key % 10;
+        for(auto i = table[index].begin(); i != table[index].end(); i++){
+            if(*i == key){
+                return true;
+            }
+        }
+        return false;
+    }
+
     void display(){
-        for(int i=0;i<capacity;i++){
-            cout<<arr[i]<<" ";
+        for(int i = 0; i < 10; i++){
+            cout << i;
+            for(auto j = table[i].begin(); j != table[i].end(); j++){
+                cout << " --> " << *j;
+            }
+            cout << endl;
         }
-        cout<<endl;
     }
+
+
+
 };
 
 int main()
 {
     
-    QuadraticHash qh(10);
-    qh.insert(4);
-    qh.insert(6);
-    qh.insert(14);
-    qh.insert(9);
-    qh.insert(12);
-    qh.insert(34);
-
-    qh.display();
     return 0;
 }
