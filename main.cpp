@@ -1,66 +1,68 @@
 #include <bits/stdc++.h>
 using namespace std; 
 
-class HashTable {
-    private:
-    int n;
-    list<int> *table;
-
+class QuadraticHash{
+    int *arr;
+    int size;
+    int capacity;
     public:
-    HashTable(int n) ;
-
-    void insert(int key) ;
-
-    void remove(int key) ;
-
-    bool search(int key) ;
-
-    void display() ;
-};
-
-HashTable::HashTable(int n) {
-    this->n = n;
-    table = new list<int>[n];
-}
-
-void HashTable::insert(int key) {
-    int i = key % n;
-    table[i].push_back(key);
-}
-
-void HashTable::remove(int key) {
-    int i = key % n;
-    table[i].remove(key);
-}
-
-bool HashTable::search(int key) {
-    int i = key % n;
-    for (auto x : table[i])
-        if (x == key)
-            return true;
-    return false;
-}
-
-void HashTable::display() {
-    for (int i = 0; i < n; i++) {
-        cout << i;
-        for (auto x : table[i])
-            cout << " --> " << x;
-        cout << endl;
+    QuadraticHash(int cap){
+        capacity = cap;
+        size = 0;
+        arr = new int[cap];
+        for(int i=0;i<cap;i++){
+            arr[i] = -1;
+        }
     }
-}
-
-
+    int hash(int key){
+        return key%capacity;
+    }
+    int hash2(int key){
+        return 7-(key%7);
+    }
+    void insert(int key){
+        if(size==capacity){
+            cout<<"Hash Table is full"<<endl;
+            return;
+        }
+        int i = hash(key);
+        int j = hash2(key);
+        int k = 0;
+        while(arr[(i+k*j)%capacity]!=-1){
+            k++;
+        }
+        arr[(i+k*j)%capacity] = key;
+        size++;
+    }
+    void remove(int key){
+        int i = hash(key);
+        int j = hash2(key);
+        int k = 0;
+        while(arr[(i+k*j)%capacity]!=key){
+            k++;
+        }
+        arr[(i+k*j)%capacity] = -1;
+        size--;
+    }
+    void display(){
+        for(int i=0;i<capacity;i++){
+            cout<<arr[i]<<" ";
+        }
+        cout<<endl;
+    }
+};
 
 int main()
 {
-    vector<int> keys = {4, 6, 9, 12, 34};
-    HashTable h(10);
-    for (int key : keys)
-        h.insert(key);
-
-    h.display();
-
     
+    QuadraticHash qh(10);
+    qh.insert(4);
+    qh.insert(6);
+    qh.insert(14);
+    qh.insert(9);
+    qh.insert(12);
+    qh.insert(34);
+
+    qh.display();
     return 0;
 }
