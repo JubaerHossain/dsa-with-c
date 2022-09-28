@@ -61,6 +61,8 @@ int main()
 
     h.display();
 
+    h.search(12);
+
     
     return 0;
 }
