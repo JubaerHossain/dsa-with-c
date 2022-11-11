@@ -50,6 +50,11 @@ void solve(int arr[], int n)
     }
     print(arr, n);
 }
+// best case time complexity is o(logn)
+void solve2(int arr[], int n){
+    sort(arr, arr+n);
+    print(arr, n);
+}
 
 int main()
 {
