@@ -29,13 +29,31 @@ void solve(int arr[], int n){
     int temp;
     for(int i = 0; i < n ; i++){
         for(int j = 0; j < n - i-1; j ++){
+            cout << "i = " << i << " j = " << j << " arr  ";            
+            cout << "arr[j] = " << arr[j] << " arr[j+1] = " << arr[j+1] << endl;
             if(arr[j]> arr[j+1]){
                 temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
-            }
-        }       
+            } 
+              print(arr,n);
+             cout << endl;             
+        }    
         
+    }
+    print(arr, n);
+}
+
+void max_sort(int arr[], int n){
+    int temp;
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < n - i -1; j++){
+            if(arr[j] < arr[j+1]){
+                temp = arr[j];
+                arr[j] = arr[j+1];
+                arr[j+1] = temp;
+            }
+        }
     }
     print(arr, n);
 }
@@ -43,8 +61,10 @@ void solve(int arr[], int n){
 int main()
 {
     
-    int arr[] = {25, 40, 13, 2, 1};
+    int arr[] = {55, 40, 13, 2, 1};
     int n = sizeof(arr) / sizeof(arr[0]);
     solve(arr, n);
+    cout << "max sort" << endl;
+    max_sort(arr, n);
     return 0;
 }
