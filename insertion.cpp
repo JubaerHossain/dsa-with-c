@@ -51,8 +51,11 @@ void maxSort(int arr[], int n);
 int main()
 {
     int arr[] = {55, 40, 53, 2, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    minSort(arr, n);
+    int arr2[] = {1, 2, 3, 4, 70, 8};
+    // int n = sizeof(arr) / sizeof(arr[0]);
+    int n = sizeof(arr2) / sizeof(arr2[0]);
+    // minSort(arr, n);
+    minSort(arr2, n);
     cout << "after maxSort" << endl;
     // maxSort(arr, n);
     return 0;
