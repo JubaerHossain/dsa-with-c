@@ -43,16 +43,19 @@ void solve(int arr[], int n)
                 min_element = j;
             }
         }
-        cout << "Minimum element is " << arr[min_element] << " at index " << min_element << endl;
-        int temp = arr[min_element];
-        arr[min_element] = arr[i];
-        arr[i] = temp;
+        if (min_element != i)
+        {
+            int temp = arr[min_element];
+            arr[min_element] = arr[i];
+            arr[i] = temp;
+        }
     }
     print(arr, n);
 }
 // best case time complexity is o(logn)
-void solve2(int arr[], int n){
-    sort(arr, arr+n);
+void solve2(int arr[], int n)
+{
+    sort(arr, arr + n);
     print(arr, n);
 }
 
