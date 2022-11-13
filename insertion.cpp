@@ -46,7 +46,19 @@ void minSort(int arr[], int n){
     }
     print(arr, n);
 };
-void maxSort(int arr[], int n);
+void maxSort(int arr[], int n){
+    int i,j,item;
+    for(i=0; i< n; i++){
+        item = arr[i];
+        j= i -1;
+        while(j >=0 && arr[j] < item){
+            arr[j+1]  = arr[j];
+            j--;
+        };
+        arr[j+1] = item;
+    }
+    print(arr, n);
+}
 
 int main()
 {
@@ -57,6 +69,6 @@ int main()
     // minSort(arr, n);
     minSort(arr2, n);
     cout << "after maxSort" << endl;
-    // maxSort(arr, n);
+    maxSort(arr, n);
     return 0;
 }
