@@ -48,9 +48,9 @@ void merge(int arr[], int l, int mid, int r)
     }
 
     // transfering all elements from temporary to arr //
-    for (int f = l; f <= r; f++)
+    for (int i = l; i <= r; i++)
     {
-        arr[f] = temp[f];
+        arr[i] = temp[i];
     }
 }
 void mergeSort(int arr[], int l, int r)
