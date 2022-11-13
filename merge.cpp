@@ -1,106 +1,86 @@
 #include <bits/stdc++.h>
-#define ll long long
-#define ld long double
-#define pb push_back
-#define pf push_front
-#define ppb pop_back
-#define ppf pop_front
-#define maxe *max_element
-#define mine *min_element
-#define mem(a, b) memset(a, b, sizeof(a))
-#define all(a) (a).begin(), (a).end()
-#define gcd(a, b) __gcd(a, b)
-#define lcm(a, b) ((a) * ((b) / gcd(a, b)))
-#define point(a) fixed << setprecision(a)
-#define uniq(a)   \
-    sort(all(a)); \
-    (a).erase(unique((a).begin(), (a).end()), (a).end())
-#define tc       \
-    int test;    \
-    cin >> test; \
-    while (test--)
 using namespace std;
 
-void print(int a[], int n)
+void merge(int arr[], int l, int mid, int r)
 {
-    for (int i = 0; i < n; i++)
+    int i = l;        // starting index of left half of arr
+    int j = mid + 1;  // starting index of right half of arr
+    int f = l;        // index used to transfer elements in temporary array
+    int temp[100000]; // temporary array
+
+    // storing elements in the temporary array in a sorted manner//
+
+    while (i <= mid && j <= r)
     {
-        cout << a[i] << " ";
-    }
-    cout << endl;
-}
-
-class Solution
-{
-
-public:
-    void merge(int arr[], int l, int mid, int r)
-    {
-        int left = l;
-        int middle = mid + 1;
-        int start = l;
-        int temp[1000];
-
-        while (left <= mid && mid <= r)
+        if (arr[i] < arr[j])
         {
-            if (arr[left] < arr[middle])
-            {
-                temp[start] = arr[left];
-                left++;
-            }
-            else
-            {
-                temp[start] = arr[middle];
-                middle++;
-            }
-            start++;
-        }
-
-        if (left > mid)
-        {
-            while (middle <= r)
-            {
-                temp[start] = arr[middle];
-                middle++;
-                start++;
-            }
+            temp[f] = arr[i];
+            i++;
         }
         else
         {
-            while (left <= mid)
-            {
-                temp[start] = arr[left];
-                left++;
-                start++;
-            }
+            temp[f] = arr[j];
+            j++;
         }
-
-        for (int i = l; i <= r; i++)
-        {
-            arr[i] = temp[i];
-        }
+        f++;
     }
 
-    void mergeSort(int arr[], int l, int r)
+    // if elements on the left half are still left //
+
+    if (i > mid)
     {
-        if (l < r)
+        while (j <= r)
         {
-            int mid = (l + r) / 2;
-            mergeSort(arr, l, mid);
-            mergeSort(arr, mid + 1, r);
-            merge(arr, l, mid, r);
+            temp[f] = arr[j];
+            f++;
+            j++;
         }
     }
-};
+    else
+    {
+        //  if elements on the right half are still left //
+        while (i <= mid)
+        {
+            temp[f] = arr[i];
+            f++;
+            i++;
+        }
+    }
+
+    // transfering all elements from temporary to arr //
+    for (int f = l; f <= r; f++)
+    {
+        arr[f] = temp[f];
+    }
+}
+void mergeSort(int arr[], int l, int r)
+{
+    if (l < r)
+    {
+        int mid = (l + r) / 2;
+        mergeSort(arr, l, mid);     // left half
+        mergeSort(arr, mid + 1, r); // right half
+        merge(arr, l, mid, r);      // merging sorted halves
+    }
+}
+
 int main()
 {
-    Solution s;
-    int arr[] = {55, 40, 53, 2, 1};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    print(arr, n);
-    s.mergeSort(arr, 0, n - 1);
-    cout << "After sorting" << endl;
-    print(arr, n);
 
+    // int arr[] = {9, 4, 7, 6, 3, 1, 5}  ;
+    int arr[] = {5, 1, 1, 2, 0, 0};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Before Sorting Array: " << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    mergeSort(arr, 0, n - 1);
+    cout << "After Sorting Array: " << endl;
+    for (int i = 0; i < n; i++)
+    {
+        cout << arr[i] << " ";
+    }
     return 0;
 }
