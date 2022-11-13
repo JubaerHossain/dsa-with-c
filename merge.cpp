@@ -53,14 +53,35 @@ void merge(int arr[], int l, int mid, int r)
         arr[i] = temp[i];
     }
 }
+void merge2(int a[], int low, int mid, int high)
+{
+    int b[10000];
+    int i = low, j = mid + 1, k = low;
+
+    while (i <= mid && j <= high)
+    {
+        if (a[i] <= a[j])
+            b[k++] = a[i++];
+        else
+            b[k++] = a[j++];
+    }
+    while (i <= mid)
+        b[k++] = a[i++];
+
+    while (j <= high)
+        b[k++] = a[j++];
+
+    for (i = low; i <= high; i++)
+        a[i] = b[i];
+}
 void mergeSort(int arr[], int l, int r)
 {
     if (l < r)
     {
-        int mid = (l + r) / 2;
+        int mid = l + (r - l) / 2;
         mergeSort(arr, l, mid);     // left half
         mergeSort(arr, mid + 1, r); // right half
-        merge(arr, l, mid, r);      // merging sorted halves
+        merge2(arr, l, mid, r);     // merging sorted halves
     }
 }
 
@@ -68,7 +89,7 @@ int main()
 {
 
     // int arr[] = {9, 4, 7, 6, 3, 1, 5}  ;
-    int arr[] = {5, 1, 1, 2, 0, 0};
+    int arr[] = {-2,3,-5};
     int n = sizeof(arr) / sizeof(arr[0]);
     cout << "Before Sorting Array: " << endl;
     for (int i = 0; i < n; i++)
@@ -82,5 +103,6 @@ int main()
     {
         cout << arr[i] << " ";
     }
+
     return 0;
 }
