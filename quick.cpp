@@ -25,6 +25,7 @@ int partition (int a[], int start, int end){
     cout << "index: " << index << endl;
     while (start < end){
         if (a[start] <= pivot){
+            cout << "a[start]: " << a[start] << endl;
             swap(a[start], a[index]);
             index++;
         }
